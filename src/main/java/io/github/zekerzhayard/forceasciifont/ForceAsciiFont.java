@@ -7,13 +7,13 @@ import java.util.Map;
 
 import com.google.common.collect.Maps;
 import com.google.common.eventbus.EventBus;
-import net.minecraftforge.fml.common.DummyModContainer;
-import net.minecraftforge.fml.common.FMLCommonHandler;
-import net.minecraftforge.fml.common.LoadController;
-import net.minecraftforge.fml.common.ModMetadata;
-import net.minecraftforge.fml.common.versioning.InvalidVersionSpecificationException;
-import net.minecraftforge.fml.common.versioning.VersionRange;
-import net.minecraftforge.fml.relauncher.Side;
+import cpw.mods.fml.common.DummyModContainer;
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.LoadController;
+import cpw.mods.fml.common.ModMetadata;
+import cpw.mods.fml.common.versioning.InvalidVersionSpecificationException;
+import cpw.mods.fml.common.versioning.VersionRange;
+import cpw.mods.fml.relauncher.Side;
 
 public class ForceAsciiFont extends DummyModContainer {
     public ForceAsciiFont() {
@@ -24,8 +24,8 @@ public class ForceAsciiFont extends DummyModContainer {
         md.version = "@VERSION@";
         md.url = "https://www.curseforge.com/minecraft/mc-mods/forceasciifont";
         md.authorList.add("ZekerZhayard");
+        md.authorList.add("kappa-maintainer");
         md.description = "Force ASCII fonts.";
-        md.updateJSON = "https://raw.githubusercontent.com/ZekerZhayard/ForceASCIIFont/master/update.json";
     }
 
     @Override
@@ -51,7 +51,7 @@ public class ForceAsciiFont extends DummyModContainer {
     @Override
     public VersionRange acceptableMinecraftVersionRange() {
         try {
-            return VersionRange.createFromVersionSpec("[1.8,1.12.2]");
+            return VersionRange.createFromVersionSpec("[1.7.10,1.12.2]");
         } catch (InvalidVersionSpecificationException e) {
             e.printStackTrace();
         }
@@ -71,18 +71,5 @@ public class ForceAsciiFont extends DummyModContainer {
         return descriptor;
     }
 
-    @Override
-    public boolean shouldLoadInEnvironment() {
-        return FMLCommonHandler.instance().getSide().equals(Side.CLIENT);
-    }
 
-    @Override
-    public URL getUpdateUrl() {
-        try {
-            return new URL(this.getMetadata().updateJSON);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
 }
